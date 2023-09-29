@@ -1,0 +1,13 @@
+FROM python:3.8-slim
+
+WORKDIR /usr/src
+
+#ENV VIRTUAL_ENV=/opt/venv
+#RUN python -m venv $VIRTUAL_ENV
+#ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+COPY ../ ./
+
+RUN apt-get update -y && apt-get install nano && pip install -r requirements.txt
+
+EXPOSE 8443

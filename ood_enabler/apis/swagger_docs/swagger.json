@@ -1,0 +1,165 @@
+{
+    "info": {
+        "description": "REST APIs for Enabling OOD for Pytorch/Tensorflow models",
+        "title": "OOD Enabler",
+        "version": "1.0"
+    },
+    "paths": {
+        "/ood_enable": {
+            "post": {
+                "description": "Embeds OOD layer into provided model for for producing model certainty score",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "required": false,
+                        "name": "OOD Enable Params",
+                        "schema": {
+                            "$ref": "#/definitions/OODEnableSchema"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Returns task ID and status url for monitoring ood enable request"
+                    },
+                    "500": {
+                        "description": "Returns error message logged by server"
+                    }
+                }
+            }
+        }
+    },
+    "swagger": "2.0",
+    "definitions": {
+        "ModelMetadata": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "description": "Model's ML framework (tf | pytorch)"
+                },
+                "arch": {
+                    "type": "string",
+                    "description": "Model's NN architecture (i.e. resnet50)"
+                }
+            },
+            "required": [
+                "arch",
+                "type"
+            ]
+        },
+        "IBMCos": {
+            "type": "object",
+            "properties": {
+                "api_key": {
+                    "type": "string",
+                    "description": "COS api key"
+                },
+                "resource_instance_id": {
+                    "type": "string",
+                    "description": "COS resource instance ID"
+                },
+                "service_endpoint": {
+                    "type": "string",
+                    "description": "Endpoint to reach COS instance"
+                },
+                "auth_endpoint": {
+                    "type": "string",
+                    "description": "COS authentication endpoint"
+                },
+                "bucket": {
+                    "type": "string",
+                    "description": "Bucket to access desired asset"
+                },
+                "file_path": {
+                    "type": "string",
+                    "description": "file path to desired artifact in bucket"
+                }
+            },
+            "required": [
+                "api_key",
+                "auth_endpoint",
+                "bucket",
+                "file_path",
+                "resource_instance_id",
+                "service_endpoint"
+            ]
+        },
+        "Location": {
+            "type": "object",
+            "properties": {
+                "uri": {
+                    "type": "string",
+                    "description": "URI to asset; should be available publicly available or pre-signed"
+                },
+                "ibm_cos": {
+                    "$ref": "#/definitions/IBMCos"
+                }
+            }
+        },
+        "ModelRef": {
+            "type": "object",
+            "properties": {
+                "metadata": {
+                    "$ref": "#/definitions/ModelMetadata"
+                },
+                "location": {
+                    "$ref": "#/definitions/Location"
+                }
+            },
+            "required": [
+                "location",
+                "metadata"
+            ]
+        },
+        "DataRef": {
+            "type": "object",
+            "properties": {
+                "metadata": {
+                    "type": "object",
+                    "description": "Info about dataset for preprocessing specific to dataset type"
+                },
+                "location": {
+                    "$ref": "#/definitions/Location"
+                }
+            },
+            "required": [
+                "location",
+                "metadata"
+            ]
+        },
+        "Output": {
+            "type": "object",
+            "properties": {
+                "save_format": {
+                    "type": "string",
+                    "description": "Output save format. should be native or onnx. Will use 'native' if unknown value given"
+                },
+                "location": {
+                    "$ref": "#/definitions/Location"
+                }
+            },
+            "required": [
+                "location"
+            ]
+        },
+        "OODEnableSchema": {
+            "type": "object",
+            "properties": {
+                "model_ref": {
+                    "$ref": "#/definitions/ModelRef"
+                },
+                "data_ref": {
+                    "$ref": "#/definitions/DataRef"
+                },
+                "output_ref": {
+                    "$ref": "#/definitions/Output"
+                }
+            },
+            "required": [
+                "model_ref",
+                "output_ref"
+            ]
+        }
+    }
+}

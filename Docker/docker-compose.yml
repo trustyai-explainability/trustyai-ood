@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+    redis:
+        image: redis:latest
+        ports:
+            - "6379:6379"
+    ood:
+        image: "ood:latest"
+        depends_on:
+            - redis
+        ports:
+            - "8443:8443"
+        working_dir: /usr/src
+        environment:
+            BROKER_URL: redis://redis:6379/0
+            RESULT_BACKEND: redis://redis:6379/0
+        tty: true
+        stdin_open: true
+        command: >
+            bash -c "export PYTHONPATH=/usr/src/ood_enabler/apis &&
+            export C_FORCE_ROOT='true' &&
+            celery -A rest_services.celery worker --loglevel=INFO &
+            python -m ood_enabler.apis.rest_services"
+
+networks:
+  default:
+    external:
+      name: trustyai-ood
