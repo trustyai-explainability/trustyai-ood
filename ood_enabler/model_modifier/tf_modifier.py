@@ -20,7 +20,7 @@ class TFModifier(ModelModifier):
         return: transformed OOD Model
         """
         model = model_wrapper.model
-        model.get_layer("predictions").activations = None
+        model.get_layer("predictions").activation = None
 
         ood_model = Model(inputs=model.input,
                           outputs=[model.get_layer("predictions").output,
