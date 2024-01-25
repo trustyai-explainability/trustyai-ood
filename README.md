@@ -244,3 +244,11 @@ exp:
 "outputs":[{"name":"logits","datatype":"FP32","shape":[1,1000],"data":[2.857916,2.0202837,...]},
   {"name":"ood_scores","datatype":"FP32","shape":[1,1],"data":[1]}]}
 ```
+
+## Contributing
+
+Please see the [CONTRIBUTING.md](https://github.com/trustyai-explainability/trustyai-explainability/blob/main/CONTRIBUTING.md) file for more details on how to contribute to this project.
+
+## License
+
+This project is licensed under the Apache License Version 2.0 - see the [LICENSE](./LICENSE) file for details.
