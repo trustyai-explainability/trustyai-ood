@@ -247,7 +247,7 @@ exp:
 
 ## Contributing
 
-Please see the [CONTRIBUTING.md]([./CONTRIBUTING.md](https://github.com/trustyai-explainability/trustyai-explainability/blob/main/CONTRIBUTING.md)) file for more details on how to contribute to this project.
+Please see the [CONTRIBUTING.md](https://github.com/trustyai-explainability/trustyai-explainability/blob/main/CONTRIBUTING.md) file for more details on how to contribute to this project.
 
 ## License
 
