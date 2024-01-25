@@ -1,3 +1,9 @@
+"""
+Licensed Materials - Property of IBM
+Restricted Materials of IBM
+20230824
+© Copyright IBM Corp. 2024 All Rights Reserved.
+"""
 from ood_enabler.model_modifier.pytorch_modifier import PytorchModifier
 from ood_enabler.model_modifier.tf_modifier import TFModifier
 from ood_enabler.model_modifier.onnx_modifier import ONNXModifier

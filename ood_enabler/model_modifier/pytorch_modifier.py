@@ -1,3 +1,9 @@
+"""
+Licensed Materials - Property of IBM
+Restricted Materials of IBM
+20230824
+© Copyright IBM Corp. 2024 All Rights Reserved.
+"""
 import torch
 from typing import Tuple
 from ood_enabler.model_modifier.model_modifier import ModelModifier

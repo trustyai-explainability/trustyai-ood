@@ -1,3 +1,9 @@
+"""
+Licensed Materials - Property of IBM
+Restricted Materials of IBM
+20230824
+© Copyright IBM Corp. 2024 All Rights Reserved.
+"""
 from ood_enabler.model_wrapper.tf import TFWrapper
 from ood_enabler.model_wrapper.pytorch import PytorchWrapper
 from ood_enabler.model_wrapper.onnx import ONNXWrapper

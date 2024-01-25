@@ -1,3 +1,9 @@
+"""
+Licensed Materials - Property of IBM
+Restricted Materials of IBM
+20230824
+© Copyright IBM Corp. 2024 All Rights Reserved.
+"""
 from ood_enabler.util.constants import InferenceServiceType
 from ood_enabler.model_modifier.factory import get_modifier
 from ood_enabler.inference_service.factory import get_inference_service
